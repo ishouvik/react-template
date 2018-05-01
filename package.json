@@ -9,8 +9,8 @@
     "react-dom": "^16.3.2"
   },
   "scripts": {
-    "webpack-dev": "NODE_ENV=development webpack",
-    "serve-dev": "NODE_ENV=development node build/server.js"
+    "webpack-dev": "NODE_ENV=development webpack -w",
+    "serve-dev": "NODE_ENV=development nodemon build/server.js"
   },
   "devDependencies": {
     "autoprefixer": "^8.4.1",
