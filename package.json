@@ -1,0 +1,28 @@
+{
+  "name": "scachy",
+  "version": "0.1.0",
+  "private": true,
+  "main": "build/server.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  },
+  "scripts": {
+    "webpack-dev": "NODE_ENV=development webpack",
+    "serve-dev": "NODE_ENV=development node build/server.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.4.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react-app": "^3.1.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "postcss-loader": "^2.1.4",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2"
+  }
+}
