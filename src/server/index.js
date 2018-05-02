@@ -1,29 +1,44 @@
 import express from 'express';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import cors from 'cors';
+import ReactDOMServer, { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
+import serialize from 'serialize-javascript';
 import App from '../shared/App';
 
-const app = express();
+// Redux setup
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import configureStore from '../shared/config/store';
 
+const app = express();
+app.use(cors());
 app.use(express.static('public'));
 
-const appComponent = (req) => (
-  <Router location={req.url}>
-    <App />
-  </Router>
-);
+app.get('*', (req, res) => {
+  const { store } = configureStore();
+  const context = {};
+  const initialData = store.getState();
+  const markup = renderToString(
+    <Provider store={store}>
+      <Router location={req.url} context={context}>
+        <App />
+      </Router>
+    </Provider>
+  );
 
-app.get("*", (req, res) => {
+  res.set('Cache-Control', 'public, max-age=600 s-maxage=1200');
   res.send(`
-      <!DOCTYPE html>
+    <!DOCTYPE html>
+    <html>
       <head>
         <title>React Template</title>
-        <link rel="stylesheet" href="/css/main.css">
-        <script src="/bundle.js" defer></script>
+        <link rel='stylesheet' href='/css/main.css'>
+        <script src='/bundle.js' defer></script>
+        <script>window.__initialData__ = ${serialize(initialData)}</script>
       </head>
       <body>
-        <div id="root">${renderToString(appComponent(req))}</div>
+        <div id='root'>${markup}</div>
       </body>
     </html>
   `);

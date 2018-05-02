@@ -2,17 +2,23 @@
   "name": "scachy",
   "version": "0.1.0",
   "private": true,
-  "main": "build/server.js",
+  "main": "server.js",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "reactstrap": "^5.0.0"
+    "reactstrap": "^5.0.0",
+    "redux": "^4.0.0",
+    "redux-persist": "^5.9.1",
+    "redux-thunk": "^2.2.0",
+    "serialize-javascript": "^1.5.0"
   },
   "scripts": {
     "webpack-dev": "NODE_ENV=development webpack -w",
-    "serve-dev": "NODE_ENV=development nodemon build/server.js"
+    "serve-dev": "NODE_ENV=development nodemon server.js"
   },
   "devDependencies": {
     "autoprefixer": "^8.4.1",
