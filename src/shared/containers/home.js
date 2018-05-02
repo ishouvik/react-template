@@ -7,7 +7,19 @@ export class Home extends Component {
     return (
       <DefaultLayout>
         <HomeHero />
-        <AuthEmailSignInForm />
+        <div className='row'>
+          <div className='col-lg-4 mx-auto'>
+            <div className='card'>
+              <div className='card-header'>
+                Sign In
+              </div>
+
+              <div className='card-body'>
+                <AuthEmailSignInForm />
+              </div>
+            </div>
+          </div>
+        </div>
       </DefaultLayout>
     )
   }
