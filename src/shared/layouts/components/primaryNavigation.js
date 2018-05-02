@@ -30,6 +30,10 @@ class PrimaryNavigation extends Component {
         <NavItem>
           <NavLink href="/">Home</NavLink>
         </NavItem>
+
+        <NavItem>
+          <NavLink href="/about">About</NavLink>
+        </NavItem>
       </Nav>
     );
   }

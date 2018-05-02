@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { Home } from './containers';
+import { Switch, Route } from 'react-router-dom';
+import routes from './config/routes';
+import { About } from './containers';
 
 class App extends Component {
   render() {
-    return <Home />;
+    return (
+      <Switch>
+        {routes.map((route, index) => <Route key={index} {...route} />)}
+      </Switch>
+    );
   }
 }
 

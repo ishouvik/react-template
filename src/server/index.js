@@ -1,22 +1,29 @@
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import { StaticRouter as Router } from 'react-router-dom';
 import App from '../shared/App';
 
 const app = express();
 
 app.use(express.static('public'));
 
+const appComponent = (req) => (
+  <Router location={req.url}>
+    <App />
+  </Router>
+);
+
 app.get("*", (req, res) => {
   res.send(`
       <!DOCTYPE html>
       <head>
-        <title>Universal Reacl</title>
+        <title>React Template</title>
         <link rel="stylesheet" href="/css/main.css">
         <script src="/bundle.js" defer></script>
       </head>
       <body>
-        <div id="root">${renderToString(<App />)}</div>
+        <div id="root">${renderToString(appComponent(req))}</div>
       </body>
     </html>
   `);
