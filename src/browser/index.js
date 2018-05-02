@@ -10,7 +10,7 @@ import configureStore from '../shared/config/store';
 
 const { store, persistor } = configureStore(window.__initialData__);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <Router>
       <App />
