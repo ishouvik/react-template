@@ -1,13 +1,12 @@
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const autoprefixer = require("autoprefixer");
-const buildPath = __dirname + '/build'
 
 const browserConfig = {
-  mode: process.env.NODE_ENV,
   entry: "./src/browser/index.js",
+  mode: process.env.NODE_ENV,
   output: {
-    path: buildPath,
+    path: __dirname,
     filename: "./public/bundle.js"
   },
   devtool: "cheap-module-source-map",
@@ -17,7 +16,7 @@ const browserConfig = {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: "file-loader",
         options: {
-          name: "../public/media/[name].[ext]",
+          name: "public/media/[name].[ext]",
           publicPath: url => url.replace(/public/, "")
         }
       },
@@ -46,17 +45,16 @@ const browserConfig = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: "../public/css/[name].css"
+      filename: "public/css/[name].css"
     })
   ]
 };
 
 const serverConfig = {
-  mode: process.env.NODE_ENV,
   entry: "./src/server/index.js",
   target: "node",
   output: {
-    path: buildPath,
+    path: __dirname,
     filename: "server.js",
     libraryTarget: "commonjs2"
   },
@@ -67,7 +65,7 @@ const serverConfig = {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: "file-loader",
         options: {
-          name: "../public/media/[name].[ext]",
+          name: "public/media/[name].[ext]",
           publicPath: url => url.replace(/public/, ""),
           emit: false
         }
